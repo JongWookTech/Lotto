@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.HashMap;
+
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,11 +19,13 @@ public class Lotto {
 		Lotto lotto = new Lotto();
 		int count = 985;
 	
-		int[] number = new int[46];
-		int[] bonusnum = new int[46];
-		for (int i  = 0; i < number.length; i++) {
-			number[i] = 0;
-			bonusnum[i] = 0;
+		
+		HashMap<String,Integer> number = new HashMap<String, Integer>();
+		HashMap<String,Integer> bonusnum = new HashMap<String, Integer>();
+		
+		for (int i = 1; i < 46; i++) {
+			number.put(i+"", 0);
+			bonusnum.put(i+"", 0);
 		}
 
 		System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
@@ -39,11 +44,11 @@ public class Lotto {
 			for (WebElement el : lotto.driver.findElements(By.className("ball_645"))) {
 				if (bonus == 7) {
 					int num = Integer.parseInt(el.getText());
-					bonusnum[num]++;
+					bonusnum.put(el.getText(), bonusnum.get(el.getText())+1);
 					System.out.print("+ " + el.getText());
 				} else {
 					int num = Integer.parseInt(el.getText());
-					number[num]++;
+					number.put(el.getText(), number.get(el.getText())+1);
 					System.out.print(el.getText() + " ");
 				}
 				bonus++;
@@ -61,13 +66,15 @@ public class Lotto {
 
 		}
 		
-		for (int i = 1; i < number.length; i++) {
-			System.out.println(i+"이 나온 횟수 : " + number[i] + "    보너스 번호로 나온 횟수 : " + bonusnum[i]);
-		}
 
 		lotto.driver.close();
 		lotto.driver.quit();
+		
+		
+		
+		System.out.println(number);
+		System.out.println(bonusnum);
+		
 	}
 
 }
-
