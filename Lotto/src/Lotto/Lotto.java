@@ -1,4 +1,4 @@
-package Lotto;
+package lotto;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,13 +9,19 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class Lotto {
 	private WebDriver driver;
 	public static final String WEB_DRIVER_ID = "webdriver.chrome.driver";
-	public static final String WEB_DRIVER_PATH = "E:\\chromedriver.exe";
+	public static final String WEB_DRIVER_PATH = "C:\\chromedriver.exe";
+//	public static final String WEB_DRIVER_PATH = "E:\\chromedriver.exe";
 
 	public static void main(String[] args) {
 		Lotto lotto = new Lotto();
 		int count = 985;
-		
-		String [][] number = new String[count][7];
+	
+		int[] number = new int[46];
+		int[] bonusnum = new int[46];
+		for (int i  = 0; i < number.length; i++) {
+			number[i] = 0;
+			bonusnum[i] = 0;
+		}
 
 		System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
 		ChromeOptions options = new ChromeOptions();
@@ -24,29 +30,44 @@ public class Lotto {
 
 		String url = "https://www.dhlottery.co.kr/common.do?method=main";
 		lotto.driver.get(url);
-		
+
 		lotto.driver.findElement(By.id("lottoDrwNo"));
-		
-		
-		for (int i = 0; i < 985; i++) {
+
+		for (int i = 0; i < 201; i++) {
+			int bonus = 1;
 			System.out.print(count + " 회차 : ");
 			for (WebElement el : lotto.driver.findElements(By.className("ball_645"))) {
-				System.out.print(el.getText() + " ");
+				if (bonus == 7) {
+					int num = Integer.parseInt(el.getText());
+					bonusnum[num]++;
+					System.out.print("+ " + el.getText());
+				} else {
+					int num = Integer.parseInt(el.getText());
+					number[num]++;
+					System.out.print(el.getText() + " ");
+				}
+				bonus++;
 			}
 			count--;
 			System.out.println();
-			
-			lotto.driver.findElement(By.className("prev")).click();
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				;
-			}	
+			if (i != 200) {
+				lotto.driver.findElement(By.className("prev")).click();
+				try {
+					Thread.sleep(30);
+				} catch (InterruptedException e) {
+					;
+				}
+			}
+
 		}
 		
-
+		for (int i = 1; i < number.length; i++) {
+			System.out.println(i+"이 나온 횟수 : " + number[i] + "    보너스 번호로 나온 횟수 : " + bonusnum[i]);
+		}
 
 		lotto.driver.close();
 		lotto.driver.quit();
 	}
+
 }
+
