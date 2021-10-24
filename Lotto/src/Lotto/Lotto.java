@@ -53,16 +53,16 @@ public class Lotto {
 				}
 				bonus++;
 			}
+			script.put(count,number);
 			System.out.println();
 			if (i != 985) {
 				lotto.driver.findElement(By.className("prev")).click();
 				try {
-					Thread.sleep(30);
+					Thread.sleep(1);
 				} catch (InterruptedException e) {
 					;
 				}
 			}
-			script.put(count,number);
 			count--;
 		}
 		
