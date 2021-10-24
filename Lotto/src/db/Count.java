@@ -24,5 +24,6 @@ public class Count {
 		int diffDays = (int) (diffSec / (24*60*60));
 		
 		return diffDays / 7 + 1;
+		
 	}
 }
