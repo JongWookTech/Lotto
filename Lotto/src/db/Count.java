@@ -15,8 +15,7 @@ public class Count {
 		try {
 			date = new SimpleDateFormat("yyyy-MM-dd").parse(startdate);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("오류 : " + e);
 		}
 		Calendar cmpDate = Calendar.getInstance();
 		cmpDate.setTime(date);

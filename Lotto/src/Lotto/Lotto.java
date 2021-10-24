@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import db.Count;
 import db.Script;
 
 public class Lotto {
@@ -16,12 +17,12 @@ public class Lotto {
 	public static final String WEB_DRIVER_ID = "webdriver.chrome.driver";
 //	public static final String WEB_DRIVER_PATH = "C:\\chromedriver.exe";
 	public static final String WEB_DRIVER_PATH = "E:\\chromedriver.exe";
-
+	
 	public static void main(String[] args) {
+		Count ct = new Count();
 		Script script = new Script();
 		Lotto lotto = new Lotto();
-		int count = 986;
-	
+		int count = ct.count();
 		
 		
 
@@ -37,7 +38,7 @@ public class Lotto {
 		
 		lotto.driver.findElement(By.id("lottoDrwNo"));
 		
-		for (int i = 0; i < 986; i++) {
+		for (int i = 0; i < count; i++) {
 			int[] number = new int[8];
 			int bonus = 1;
 			System.out.print(count + " 회차 : ");
@@ -55,7 +56,7 @@ public class Lotto {
 			}
 			script.put(count,number);
 			System.out.println();
-			if (i != 985) {
+			if (i != count-1) {
 				lotto.driver.findElement(By.className("prev")).click();
 				try {
 					Thread.sleep(1);
