@@ -9,8 +9,8 @@ import db.Count;
 import db.Script;
 
 //각 자리의 수가 몇번마다 등장했는지 계산
-public class Step1 {
-	public int[] step1() {
+public class Step5 {
+	public int[] step5() {
 		Script script = new Script();
 		Count count = new Count();
 		HashMap<Integer, Float> ratiomap = new HashMap<>();
@@ -25,21 +25,24 @@ public class Step1 {
 		for (int i = 1; i < 46; i++) {
 			float ratio = 0;
 		// 첫번째 자리에 1~45가 몇회차에 나왔는지 결과 도출
-			if (script.get(i).size() == 0) {
+			if (script.get5(i).size() == 0) {
 			//만약 한번도 나온적이 없는 숫자이면 다음 작업 수행
 				continue;
 			}
 			//각 숫자의 마지막 출현회차 도출
-			lasttime.put(i, script.getlast(i));
+			lasttime.put(i, script.getlast5(i));
 			// 각 숫자의 통계적 출현 확률
-			ratio = (float) (script.get(i).size() / (200.00 / 100));
-//			ratio = script.get(i).size() / ((float)count.count() / 1000);
+			ratio = (float) (script.get5(i).size() / (200.00 / 100));
+//			ratio = script.get6(i).size() / ((float)count.count() / 100);
 			//HashMap에 각 숫자와 출현 비율 저장
 			ratiomap.put(i, ratio);
 		}
 		ArrayList<Entry<Integer, Float>> ratiosort = new ArrayList<>(ratiomap.entrySet());
 		ratiosort.sort(Entry.comparingByValue());
 		// value값 정렬
+		
+		
+		
 		
 		
 		for (int i = 1; i < 11; i++) {
@@ -50,7 +53,7 @@ public class Step1 {
 			int previous = count.count() - lasttime.get(ratiosort.get(ratiosort.size()-i).getKey());
 			// 몇회 전에 출현 했는지 담은 변수
 			
-			ArrayList<Integer> lottoCount = script.get(number);
+			ArrayList<Integer> lottoCount = script.get5(number);
 			int avg = 0;
 			int[] avgarr = new int[lottoCount.size()];
 			
@@ -80,9 +83,9 @@ public class Step1 {
 		for (int i = 0; i < result.length; i++) {
 			result[i] = ratiosort2.get(result.length-(i+1)).getKey();
 		}
-//		for (int i = 0; i < result.length; i++) {
+		for (int i = 0; i < result.length; i++) {
 //			System.out.println(result[i]);
-//		}
+		}
 		return result;
 	}
 }

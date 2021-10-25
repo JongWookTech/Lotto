@@ -7,8 +7,8 @@ import java.util.Date;
 
 public class Count {
 	public int count(){
-		Calendar getToday = Calendar.getInstance();
-		getToday.setTime(new Date());
+		Calendar today = Calendar.getInstance();
+		today.setTime(new Date());
 		
 		String startdate = "2002-12-07";
 		Date date = null;
@@ -17,13 +17,12 @@ public class Count {
 		} catch (ParseException e) {
 			System.out.println("오류 : " + e);
 		}
-		Calendar cmpDate = Calendar.getInstance();
-		cmpDate.setTime(date);
+		Calendar firstdate = Calendar.getInstance();
+		firstdate.setTime(date);
 		
-		long diffSec = (getToday.getTimeInMillis() - cmpDate.getTimeInMillis()) / 1000;
-		int diffDays = (int) (diffSec / (24*60*60));
+		long sec = (today.getTimeInMillis() - firstdate.getTimeInMillis()) / 1000;
+		int days = (int) (sec / (24*60*60));
 		
-		return diffDays / 7 + 1;
-		
+		return days / 7 + 1;	
 	}
 }
