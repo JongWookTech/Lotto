@@ -13,12 +13,12 @@ public class Step1 {
 	public int[] step1() {
 		Script script = new Script();
 		Count count = new Count();
-		HashMap<Integer, Float> ratiomap = new HashMap<>();
-		// 각 숫자의 지금까지의 출현 비율을 도출
 		HashMap<Integer, Integer> lasttime = new HashMap<>();
 		//마지막에 나온 회차를 담기 위함
 		HashMap<Integer, Float> prio = new HashMap<>();
 		// 각 숫자와 비율을 map으로 저장
+		HashMap<Integer, Float> ratiomap = new HashMap<>();
+		// 각 숫자의 지금까지의 출현 비율을 도출
 		int[] result = new int[10];
 		
 		
@@ -40,11 +40,11 @@ public class Step1 {
 		ArrayList<Entry<Integer, Float>> ratiosort = new ArrayList<>(ratiomap.entrySet());
 		ratiosort.sort(Entry.comparingByValue());
 		// value값 정렬
+		System.out.println(ratiosort);
 		
 		
+		//가장 비율이 높은 10개의 숫자를 뽑아내서 조건에 따른 우선순위 매기기
 		for (int i = 1; i < 11; i++) {
-			//여기부터 평균적인 출현 주기 도출해내기
-			
 			int number = ratiosort.get(ratiosort.size()-i).getKey();
 			// sort된 ratiosort에서 순차적으로 뽑아낸 key값들
 			int previous = count.count() - lasttime.get(ratiosort.get(ratiosort.size()-i).getKey());
@@ -81,8 +81,8 @@ public class Step1 {
 			result[i] = ratiosort2.get(result.length-(i+1)).getKey();
 		}
 //		for (int i = 0; i < result.length; i++) {
-//			System.out.println(result[i]);
-//		}
+//			System.out.print(result[i] + " ");
+//		}	
 		return result;
 	}
 }

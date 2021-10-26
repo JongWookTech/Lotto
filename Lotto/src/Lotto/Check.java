@@ -4,16 +4,13 @@ public class Check {
 	public static void main(String[] args) {
 		MainLotto lotto2 = new MainLotto();
 		int[][] number = lotto2.mainnumber();
-		int[] realBonus = lotto2.bonusnum();
 		for (int i = 0; i < number.length; i++) {
 			System.out.print(i + "번째 조합 : ");
-			for (int j = 0; j < number[i].length + 1; j++) {
-				if (j == number[i].length) {
-					System.out.println("+ " + realBonus[i]);
-				} else {
-					System.out.print(number[i][j] + " ");
-				}
+			for (int j = 0; j < number[i].length; j++) {
+				System.out.print(number[i][j] + " ");
+
 			}
+			System.out.println();
 		}
 		int zero = 0;
 		int one = 0;
@@ -22,8 +19,8 @@ public class Check {
 		int four = 0;
 		int five = 0;
 		int six = 0;
-		
-		for (int h = 0; h < 9000; h++) {
+
+		for (int h = 0; h < 2; h++) {
 			int count = 0;
 			int lotto[] = new int[6];
 
@@ -59,15 +56,20 @@ public class Check {
 						count++;
 					}
 				}
-				System.out.print(lotto[i] + " ");
 			}
-			System.out.println();
-			for (int i = 0; i < number[3].length; i++) {
-				System.out.print(number[3][i] + " ");
+			if (count >= 5) {
+				System.out.println();
+				System.out.println();
+				for (int i = 0; i < number[3].length; i++) {
+					System.out.print(lotto[i] + " ");
+				}
+				System.out.println();
+				for (int i = 0; i < number[3].length; i++) {
+					System.out.print(number[3][i] + " ");
+				}
+				System.out.println();
+				System.out.print(count + "개");
 			}
-			System.out.print(count+"으악");
-			System.out.println();
-			System.out.println();
 			if (count == 0) {
 				zero++;
 			}
@@ -90,12 +92,13 @@ public class Check {
 				six++;
 			}
 		}
-		System.out.println("0 개 : " +zero);
-		System.out.println("한 개 : " +one);
-		System.out.println("두 개 : " +two);
-		System.out.println("세 개 : " +three);
-		System.out.println("네 개 : " +four);
-		System.out.println("다섯 개 : " +five);
-		System.out.println("여섯 개 : " +six);
+		System.out.println();
+		System.out.println("0 개 : " + zero);
+		System.out.println("한 개 : " + one);
+		System.out.println("두 개 : " + two);
+		System.out.println("세 개 : " + three);
+		System.out.println("네 개 : " + four);
+		System.out.println("다섯 개 : " + five);
+		System.out.println("여섯 개 : " + six);
 	}
 }

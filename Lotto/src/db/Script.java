@@ -268,6 +268,7 @@ public class Script {
 		}
 		return result;
 	}
+	
 
 	public ArrayList<Integer> getB(int bonusnum) {
 		ArrayList<Integer> result = new ArrayList<>();

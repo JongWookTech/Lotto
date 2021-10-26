@@ -1,6 +1,5 @@
 package Lotto;
 
-import java.util.HashMap;
 
 
 import org.openqa.selenium.By;

@@ -8,6 +8,8 @@ import java.util.Map.Entry;
 import db.Count;
 import db.Script;
 
+//보너스 숫자는 도출해낼 필요가 없다.
+
 //각 자리의 수가 몇번마다 등장했는지 계산
 public class StepBonus {
 	public int[] stepbonus(){
